@@ -12,11 +12,12 @@ def add_jobs(request):
         form=employerforms.JobCreationForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
-            messages.success(request,"new job added")
+            messages.success(request, "new job added")
             return redirect("jobadd")
+
         else:
-            messages.error(request,"something went wrong,unable to add new job")
-            return redirect(request,"create_job.html",{"form":form})
+            messages.error(request, "something went wrong")
+            return render(request, "create_job.html", {"form": form})
     return render(request,"create_job.html",context)
 
 

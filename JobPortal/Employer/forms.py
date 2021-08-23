@@ -1,6 +1,7 @@
 
 from django import forms
 from .models import Job
+from datetime import datetime
 
 class JobCreationForm(forms.ModelForm):
     class Meta:

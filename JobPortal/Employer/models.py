@@ -5,7 +5,7 @@ class Job(models.Model):
     company_name=models.CharField(max_length=100,unique=True)
     job_title=models.CharField(max_length=120)
     start_date=models.DateField()
-    end_end=models.DateField()
+    end_date=models.DateField()
     salary=models.IntegerField(blank=True)
     company_logo=models.ImageField(upload_to="images")
     experience=models.CharField(max_length=120)
