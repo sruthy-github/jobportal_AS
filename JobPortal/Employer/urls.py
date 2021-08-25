@@ -4,5 +4,6 @@ from Employer import views
 
 
 urlpatterns=[
-    path("addjob",views.add_jobs,name="jobadd")
+    path("addjob",views.add_jobs,name="jobadd"),
+    path("listjobs",views.job_list,name="listjobs")
 ]
