@@ -6,5 +6,6 @@ from django.shortcuts import render
 
 urlpatterns=[
     path("jobseeker/home",lambda request:render(request,"jshome.html"),name="jshome"),
-    path("jobseeker/application",views.ApplicationView.as_view(),name="application")
+    path("jobseeker/application",views.ApplicationView.as_view(),name="application"),
+
 ]
