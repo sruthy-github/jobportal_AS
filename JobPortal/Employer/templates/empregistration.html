@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{%extends 'base.html'%}
+{%block body_block%}
+<div class="row">
+    <div class="col-4"></div>
+
+    <div class="col-4">
+        <h1>Register as employer</h1>
+        <form action="" method="POST">
+            {%csrf_token%}
+            {{form.as_p}}
+            <button type="submit" class="btn btn-success">Add</button>
+
+        </form>
+
+    </div>
+    <div class="col-4"></div>
+</div>
+
+{%endblock%}
