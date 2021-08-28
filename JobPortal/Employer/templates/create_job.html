@@ -3,35 +3,35 @@
 {%block body_block%}
 
 <div class="row">
-    <div class="col-3"></div>
-    <div class="col-6">
+    <div class="col-2"></div>
+    <div class="col-8">
         {%if messages%}
-            {%for message in messages%}
-                {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-                    <div style="background-color:#16cc44; color:white">
-                        {{message}}
-                    </div>
+        {%for message in messages%}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+        <div style="background-color:#16cc44; color:white">
+            {{message}}
+        </div>
 
-                {%endif%}
-            {%endfor%}
+        {%endif%}
+        {%endfor%}
         {%endif%}
     </div>
     <div class="col-4"></div>
 </div>
-<div class="row">
 
-
-    <div class="col-6">
-<form action="" method="post" enctype="multipart/form-data">
-    {%csrf_token%}
-    {{form.as_p}}
-
-   <button type="submit" class="btn btn-success">Add Job</button>
-
-</form>
-
-</div>
-    <div class="col-3"></div>
+<table class="table">
+    <div class="row">
+        <div class="col-4">
+            <td>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {%csrf_token%}
+                    {{form.as_p}}
+                    <button type="submit" class="btn btn-success">Add JOB</button>
+                </form>
+            </td>
+        </div>
+        <div class="col-4"></div>
     </div>
+</table>
 
 {%endblock%}

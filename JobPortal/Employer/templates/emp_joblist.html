@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{%extends 'base.html'%}
+{%block body_block%}
+
+  <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <table class="table mt-5">
+                <tr>
+
+                    <b>
+                    <th>Company Name</th>
+                    <th>Job title</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Salary</th>
+                   <!-- <th>Company_logo</th>-->
+                    <th>Experience</th>
+                    <th>Location</th>
+                    <th>Skills</th>
+                    <th>Description</th>
+                        <th>Action</th>
+
+
+                </b></tr>
+
+                 {% for jobs in jobs%}
+                <tr>
+                    <td>{{jobs.company_name}}</td>
+                    <td>{{jobs.job_title}}</td>
+                    <td>{{jobs.start_date}}</td>
+                     <td>{{jobs.end_date}}</td>
+                     <td>{{jobs.salary}}</td>
+                   <!-- <td><img src=""{{jobs.images.url}} alt="" style="width:100px;height:100px"></td>-->
+
+                    <td>{{jobs.experience}}</td>
+                    <td>{{jobs.location}}</td>
+                    <td>{{jobs.skills}}</td>
+                    <td>{{jobs.desc}}</td>
+                    <td>
+                        <a class="btn btn-outline-warning ms-2" href="{%url 'editjob' jobs.id%}">Edit</a>
+                        <a class="btn btn-outline-danger ms-2 " href="{%url 'delete' jobs.id%}">Delete</a>
+                      <!--  <a class="btn btn-primary ms-2" href="">View</a>-->
+                   </td>
+                {%endfor%}
+            </table>
+        </div>
+        <div class="col-2"></div>
+    </div>
+
+</div>
+
+
+
+
+{%endblock%}
