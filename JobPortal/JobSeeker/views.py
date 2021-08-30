@@ -1,9 +1,42 @@
 from django.shortcuts import render,redirect
-from django.views.generic import TemplateView
-from JobSeeker.models import Application
+from django.views.generic import TemplateView,CreateView
+from JobSeeker.models import Application,MyUser
 from JobSeeker import forms
-# Create your views here.
+from Employer.models import Job
+from django.urls import reverse_lazy
+from django.contrib.auth import authenticate,login,logout
 
+
+# Create your views here.
+class UserCreationView(CreateView):
+    template_name = "register.html"
+    model=MyUser
+    form_class=forms.RegistrationForm
+    success_url=reverse_lazy("jshome")
+
+class SigninView(TemplateView):
+    template_name = "login.html"
+
+    def get_context_data(self, **kwargs):
+        context=super().get_context_data(**kwargs)
+        context['form']=forms.LoginForm
+        return context
+
+    def post(self,request,*args,**kwargs):
+        form=forms.LoginForm(request.POST)
+        if form.is_valid():
+            username=form.cleaned_data["email"]
+            password=form.cleaned_data["password"]
+            user=authenticate(request,username=username,password=password)
+
+            # if user:
+            #     login(request,user)
+            #     if request.user.role=="faculty":
+            #         return redirect("fhome")
+            #     else:
+            #         return redirect("courseadd")
+        else:
+            return render(request,self.template_name,{'form':form})
 
 class ApplicationView(TemplateView):
     model=Application
@@ -42,7 +75,14 @@ class ApplicationView(TemplateView):
             self.context['form']=form
             return render(request,self.template_name,self.context)
 
-
+class JobListView(TemplateView):
+    model=Job
+    template_name = "joblist.html"
+    context={}
+    def get(self, request, *args, **kwargs):
+        jobs=self.model.objects.all()
+        self.context["jobs"]=jobs
+        return render(request,self.template_name,self.context)
 
 
 

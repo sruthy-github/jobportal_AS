@@ -1,14 +1,23 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Application
+from .models import Application,MyUser
+from .admin import UserCreationForm
 
 
+class RegistrationForm(UserCreationForm):
+    class Meta:
+        model=MyUser
+        fields=["email","username"]
 
+class LoginForm(forms.Form):
+    email=forms.CharField(widget=forms.EmailInput())
+    password=forms.CharField(widget=forms.PasswordInput())
 
 class ApplicationForm(ModelForm):
     class Meta:
         model=Application
-        fields='__all__'
+        fields=['job_title','candidate_name','age','dob','email','phone_number',
+                'qualification','college','percent_or_cgpa']
         widgets={
             'job_title':forms.Select(attrs={'class':'form-select'}),
             'candidate_name':forms.TextInput(attrs={'class':'form-control'}),
